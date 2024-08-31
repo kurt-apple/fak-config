@@ -107,7 +107,10 @@ let arrow_R = td.make 200 [ kc.RIGHT, cu.PANR, cu.DRAGR ] in
 let zoomU = td.make 200 [ kc.UP, hold.none & kc.PGUP ] in
 let zoomD = td.make 200 [ kc.DOWN, hold.none & kc.PGDN ] in
 let lambda = td.make 200 [ kc.EQL, m_lambda ] in
-let excellent_layering = td.make 200 [ tsm.lsft, MO 1, MO 1 & md.lsft ] in
+let excellent_layering = td.make 200 [ md.lsft, MO 1, MO 1 & md.lsft ] in
+# TODO: I want spacebar to also register as MO 1 at the same time, and tap-dance MO 2. Haven't figured it out yet.
+let woomod = # td.make 200 [ kc.SPC, MO 2 & hold.reg.behavior {} ] in
+  MO 1 & tap.sticky.layer 2 & hold.reg.behavior {} in
 let keymap = {
   virtual_keys = virtual_keys',
   layers = [
@@ -118,14 +121,14 @@ let keymap = {
       LP_L0,kc.S,     kc.D,   kc.F,       kc.J,     kc.K,   kc.L,   excellent_layering,
       kc.Z, kc.X,     kc.C,   kc.V,       kc.B,     kc.N,   kc.M,   kc.ENT,
             kc.SCLN,  kc.QUOT,kc.COMM,    XXXX,     lambda, kc.DOT,
-            cu.CT,    ks.LPRN,kc.BSPC,    kc.SPC,   MO 2,   kc.SLSH
+            cu.CT,    ks.LPRN,kc.BSPC,    kc.SPC,   woomod, kc.SLSH
     ],
     [
                       kc.LBRC,                      kc.RBRC,
             kc.BSLS,  niceTAB,				              XXXX,	  XXXX,
             kc.GRV,	  zoomU,  XXXX,       kc.MINS,  XXXX,   XXXX,
     	XXXX, arrow_L,  zoomD,  arrow_R,		kc.N7,    kc.N8,  kc.N9,  md.rsft,  
-      XXXX, kc.HOME,  zoomD,  kc.END,     kc.N4,    kc.N5,  kc.N6,  XXXX,
+      XXXX, kc.HOME,  XXXX,   kc.END,     kc.N4,    kc.N5,  kc.N6,  XXXX,
             XXXX,	    XXXX,	  XXXX,		    kc.N1,    kc.N2,  kc.N3,
             XXXX,		  XXXX,	  XXXX,		    XXXX,     kc.N0,  XXXX
     ],
